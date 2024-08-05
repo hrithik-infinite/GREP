@@ -9,7 +9,12 @@ function matchPattern(inputLine, pattern) {
     console.log(`inside ///w ${pattern}`);
     return /\w/.test(inputLine);
   } else if (pattern[0] === "[" && pattern[pattern.length - 1] === "]") {
+    console.log(`inside [] ${pattern}`);
+    console.log(` ${pattern.slice(2, pattern.length - 1)}`);
+    console.log(` ${pattern.slice(1, pattern.length - 1)}`);
+
     if (pattern[1] === "^") {
+      console.log(`inside [^] ${pattern}`);
       return !pattern.slice(2, pattern.length - 1).includes(inputLine);
     } else {
       return pattern.slice(1, pattern.length - 1).includes(inputLine);
