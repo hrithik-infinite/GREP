@@ -10,7 +10,7 @@ function matchPattern(inputLine, pattern) {
     return /\w/.test(inputLine);
   } else if (pattern[0] === "[" && pattern[pattern.length - 1] === "]") {
     if (pattern[1] === "^") {
-      return !!pattern.slice(2, pattern.length - 1).includes(inputLine);
+      return !pattern.slice(2, pattern.length - 1).includes(inputLine);
     } else {
       return pattern.slice(1, pattern.length - 1).includes(inputLine);
     }
