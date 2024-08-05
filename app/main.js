@@ -9,7 +9,11 @@ function matchPattern(inputLine, pattern) {
     console.log(`inside ///w ${pattern}`);
     return /\w/.test(inputLine);
   } else if (pattern[0] === "[" && pattern[pattern.length - 1] === "]") {
-    return pattern.slice(1, pattern.length - 1).includes(inputLine);
+    if (pattern[1] === "^") {
+      return !!pattern.slice(2, pattern.length - 1).includes(inputLine);
+    } else {
+      return pattern.slice(1, pattern.length - 1).includes(inputLine);
+    }
   } else {
     throw new Error(`Unhandled pattern ${pattern}`);
   }
