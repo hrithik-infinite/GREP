@@ -8,6 +8,8 @@ function matchPattern(inputLine, pattern) {
   } else if (pattern === "\\w") {
     console.log(`inside ///w ${pattern}`);
     return /\w/.test(inputLine);
+  } else if (pattern[0] === "[" && pattern[pattern.length - 1] === "]") {
+    return pattern.slice(1, pattern.length - 1).includes(inputLine);
   } else {
     throw new Error(`Unhandled pattern ${pattern}`);
   }
