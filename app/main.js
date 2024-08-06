@@ -20,8 +20,8 @@ function matchPattern(inputLine, pattern) {
 
 function main() {
   const pattern = process.argv[3];
-  // const inputLine = require("fs").readFileSync(0, "utf-8").trim();
-  const inputLine = "banana";
+  const inputLine = require("fs").readFileSync(0, "utf-8").trim();
+  // const inputLine = "banana";
   if (process.argv[2] !== "-E") {
     process.exit(1);
   }
