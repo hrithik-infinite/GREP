@@ -6,13 +6,21 @@ function matchPattern(inputLine, pattern) {
   } else if (pattern === "\\w") {
     return /\w/.test(inputLine);
   } else if (pattern[0] === "[" && pattern[pattern.length - 1] === "]") {
-    let op;
-    if (pattern[1] === "^") {
-      op = !pattern.slice(2, pattern.length - 1).includes(inputLine);
-    } else {
-      op = pattern.slice(1, pattern.length - 1).includes(inputLine);
+    let isNegative = pattern[1] === "^";
+    let charSet = isNegative ? pattern.slice(2, -1) : pattern.slice(1, -1);
+
+    for (let char of inputLine) {
+      if (isNegative) {
+        if (!charSet.includes(char)) {
+          return true;
+        }
+      } else {
+        if (charSet.includes(char)) {
+          return true;
+        }
+      }
     }
-    return op;
+    return false;
   } else {
     throw new Error(`Unhandled pattern ${pattern}`);
   }
